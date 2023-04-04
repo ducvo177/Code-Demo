@@ -1,6 +1,6 @@
 <?php
 class Car{
-    public $name;
+    public $name; // Ví dụ property name được định nghĩa để đại diện cho trạng thái tên của class 
     public $color;
 
     public function __construct($name, $color){
@@ -8,7 +8,7 @@ class Car{
         $this->color= $color;
     }
 
-    public function introduce() {
+    public function introduce() { //Ví dụ method introduce được định nghĩa để đại diện cho một hành động mà class có thể thực hiện 
     echo "This " . $this->name . " car has " . $this->color . " color.";
   }
 }
