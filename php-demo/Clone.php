@@ -15,7 +15,7 @@ class Car{
 
 class Vehicle{
     private $car;
-    public function __construct(Car $car) { //  inject đối tượng Car vào khi khởi tạo Vehicle
+    public function __construct(Car $car) { //  inject đối tượng Car vào khi khởi tạo Vehicle giúp tăng tính linh hoạt, dễ bảo trì hơn
         $this->car = $car;
     }
 
