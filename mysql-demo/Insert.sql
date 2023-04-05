@@ -1,0 +1,1 @@
+INSERT INTO users (id, name, created_at) VALUES (1, 'John Doe', CURRENT_TIMESTAMP);
