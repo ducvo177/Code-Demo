@@ -7,3 +7,8 @@ INSERT INTO books (id, name, user_id) VALUES
 (1, 'The Great Gatsby', 1),
 (2, 'To Kill a Mockingbird', 2),
 (3, 'Pride and Prejudice', 3);
+
+INSERT INTO posts (id, name, user_id) VALUES 
+(1, 'Hello', 1),
+(2, 'React', 2),
+(3, 'PHP', 3);
