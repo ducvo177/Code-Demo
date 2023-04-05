@@ -1,0 +1,1 @@
+CREATE INDEX idex_name ON users (name); /* tạo index cho cột name của users- giúp tăng tốc độ truy vấn
