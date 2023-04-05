@@ -1,0 +1,7 @@
+UPDATE users
+SET name = 'Gold' /*Đổi tên hàng ở bảng users có id trùng với user_id của bảng được tìm ra ở bảng posts trong subquerries */ 
+WHERE id IN (
+  SELECT user_id
+  FROM posts
+  WHERE id = 1
+);

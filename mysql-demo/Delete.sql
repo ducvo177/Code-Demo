@@ -1,0 +1,1 @@
+DELETE FROM books WHERE id = 2; /* xóa dữ liệu ở hàng trong bảng books có id = 2

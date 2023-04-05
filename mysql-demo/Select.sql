@@ -1,0 +1,1 @@
+SELECT * FROM users; /*Lấy dữ liệu từ bảng users*/

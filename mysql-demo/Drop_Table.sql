@@ -1,0 +1,1 @@
+DROP TABLE IF EXISTS `posts`; /*Xóa bảng posts nếu tồn tại*/

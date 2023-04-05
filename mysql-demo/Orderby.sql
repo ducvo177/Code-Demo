@@ -1,0 +1,1 @@
+SELECT * FROM users ORDER BY name;/* sắp xếp theo thứ tự bảng chữ cái của cột name trong bảng users*/
