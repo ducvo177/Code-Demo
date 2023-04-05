@@ -1,0 +1,1 @@
+SELECT * FROM users LIMIT 2;/* Lấy ra 2 bản ghi của bảng users*/
