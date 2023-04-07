@@ -13,28 +13,32 @@
       <my-component></my-component>
     </div>
 
-    <script>
-      const MyComponent = {
+    <script setup>
+      const { defineComponent, provide, createApp} =Vue;
+
+      const MyComponent = defineComponent({
         template:
-          "<div>Child Component</div> <button  @click='handleClick'>Call</button>",
+          '<div>Child Component</div> <button  @click="handleClick">Call</button>',
         methods: {
           handleClick() {
-            console.log('Child Component')
+            console.log("Child Component");
           },
         },
-      };
+      });
 
-      Vue.createApp({
-        el: "#app",
+      const app = createApp({
         components: {
-          "my-component": MyComponent,
+          MyComponent,
         },
-        provide: {
-          callFunction: () => {
-           alert("Function is running");
-          },
+        setup() {
+          provide("callFunction", () => {
+            alert("Function is running");
+          });
+
+          return {};
         },
-      }).mount("#app");
+      });
+      app.mount('#app');
     </script>
   </body>
 </html>
