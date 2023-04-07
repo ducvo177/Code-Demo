@@ -10,30 +10,34 @@
   </head>
 
   <body>
-    <div id="app">
-      <ul v-if="posts">
+    <div id="app"></div>
+
+    <script>
+      const { createApp, ref } = Vue;
+
+      const app = createApp({
+        template: `
+  <ul v-if="posts">
         <li v-for="post in posts" :key="post.id">{{ post.title }}</li>
       </ul>
       <button @click="handleGet">Render Post</button>
-    </div>
-
-    <script>
-      Vue.createApp({
-        el: "#app",
-        data() {
-          return {
-            posts: [],
-          };
-        },
-        methods: {
-          handleGet() {
+  `,
+        setup() {
+          const posts = ref([]);
+          function handleGet() {
             axios
               .get("https://jsonplaceholder.typicode.com/posts")
-              .then((response) => (this.posts = response.data))
+              .then((response) => (posts.value = response.data))
               .catch((error) => console.log(error));
-          },
+          }
+
+          return {
+            posts,
+            handleGet,
+          };
         },
-      }).mount("#app");
+      });
+      app.mount("#app");
     </script>
   </body>
 </html>
