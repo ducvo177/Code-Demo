@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Vue Example</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://unpkg.com/vue-router@4/dist/vue-router.global.js"></script>
+    <!-- Import và sử dụng thư viện vue-router -->
+  </head>
+
+  <body>
+    <div id="app">
+      <ul>
+        <li>
+          <router-link to="/">Home</router-link>
+        </li>
+        <li>
+          <router-link to="/login">Login</router-link>
+        </li>
+        <li>
+          <router-link to="/web">Web</router-link>
+        </li>
+      </ul>
+      <router-view></router-view>
+    </div>
+
+    <script>
+      const Home = {
+        template: `<button @click="handleClear">Clear</button>`,
+        setup() {
+          function handleClear() {
+            localStorage.setItem("isAuthenticated", false);
+          }
+          return {
+            handleClear,
+          };
+        },
+      };
+      const Login = {
+        template: `<div> <form @submit="handleSubmit">
+        <label for="email">Email:</label>
+        <input  type="email" id="email" />
+        <button type="submit">Submit</button>
+      </form></div>`,
+        setup() {
+          function handleSubmit() {
+            router.push("/web");
+            localStorage.setItem("isAuthenticated", true);
+          }
+          return {
+            handleSubmit,
+          };
+        },
+      };
+      const Web = { template: "<div>You are login</div>" };
+
+      const router = VueRouter.createRouter({
+        history: VueRouter.createWebHistory(),
+        routes: [
+          { path: "/", component: Home },
+          {
+            path: "/login",
+            component: Login,
+          },
+          {
+            path: "/web",
+            component: Web,
+            beforeEnter: (to, from, next) => {
+              if (localStorage.getItem("isAuthenticated") == "true") {
+                next();
+              } else {
+                next({ name: "login" });
+              }
+            }
+          },
+        ],
+      });
+
+      const app = Vue.createApp({});
+
+      app.use(router);
+
+      app.mount("#app");
+    </script>
+  </body>
+</html>
