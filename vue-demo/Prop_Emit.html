@@ -9,38 +9,45 @@
   </head>
 
   <body>
-    <div id="app">
-        <p> Parent Component: {{ parentMessage }}</p>
-        <hr/>
-      <my-component :message="parentMessage" @update-message="parentMessage = $event"></my-component>
-    </div>
+    <div id="app"></div>
 
-    <script>
-      const MyComponent = {
-        props: ['message'],
-        template:
-          `<div>
+    <script setup>
+      const { defineComponent, provide, createApp, ref } = Vue;
+
+      const MyComponent = defineComponent({
+        props: ["message"],
+        template: `<div>
             Child Component: {{ message }}
             <button @click="handleClick">Update Parent</button>
           </div>`,
         methods: {
           handleClick() {
-            this.$emit('update-message', 'Child component!');
+            this.$emit("update-message", "Child component!");
           },
         },
-      };
+      });
 
-      Vue.createApp({
-        el: "#app",
+      const app = createApp({   
         components: {
-          "my-component": MyComponent,
+          MyComponent,
         },
-        data() {
+        template: `
+        <p> Parent Component: {{ parentMessage }}</p>
+        <hr/>
+      <my-component :message="parentMessage" @update-message="parentMessage = $event"></my-component>`,
+
+        setup() {
+          const parentMessage = ref("Parent Component");
+          provide("callFunction", () => {
+            alert("Function is running");
+          });
+
           return {
-            parentMessage: "Parent component!",
+            parentMessage,
           };
         },
-      }).mount("#app");
+      });
+      app.mount("#app");
     </script>
   </body>
-</html> 
+</html>
