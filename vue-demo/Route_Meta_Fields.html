@@ -69,7 +69,7 @@
           {
             path: "/web",
             component: Web,
-            meta: { title: 'Web', requiresAuth: false },//Cung cấp thêm thông tin cho route ví dụ như title,metaTags,...tăng khả năng SEO hoặc requiresAuth,...
+            meta: { title: 'Web', requiresAuth: true },//Cung cấp thêm thông tin cho route ví dụ như title,metaTags,...tăng khả năng SEO hoặc requiresAuth,...
             beforeEnter: (to, from, next) => {
               if (to.meta.requiresAuth&&localStorage.getItem("isAuthenticated") == "true") {
                 next();
