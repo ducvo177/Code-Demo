@@ -9,25 +9,29 @@
   </head>
 
   <body>
-    <div id="app">
-      <h1>{{ message }}</h1>
-      <button @click="changeMessage">Change Message</button>
-    </div>
+    <div id="app"></div>
 
     <script>
-      Vue.createApp({
-        el: "#app",
-        data: function () {
+      const { createApp, ref } = Vue;
+
+      const app = createApp({
+        template: `
+        <h1>{{ message }}</h1>
+      <button @click="changeMessage">Change Message</button>
+        `,
+        setup() {
+          const message = ref("Welcome to website");
+
+          function changeMessage() {
+            message.value = message.value + " Concrete";
+          }
           return {
-            message: "Welcome to website",
+            message,
+            changeMessage,
           };
         },
-        methods: {
-          changeMessage: function () {
-            this.message = this.message+" Concrete";
-          },
-        },
-      }).mount("#app");
+      });
+      app.mount("#app");
     </script>
   </body>
 </html>
