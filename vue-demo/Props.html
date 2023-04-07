@@ -12,16 +12,20 @@
     <div id="app">
       <p>Parent Component</p>
       <hr />
-      <my-component :message="parentMessage"></my-component>
+      <my-component :parent-message="parentMessage"></my-component>
     </div>
 
     <script setup>
       const { defineComponent, createApp, ref } = Vue;
-
       const MyComponent = defineComponent({
-        props: ["message"],
+        props: {
+          parentMessage: {
+            type: String,
+            required: true,
+          },
+        },
         template: `<div>
-            Child Component: {{ message }}
+            Child Component: {{ parentMessage }}
           </div>`,
       });
 
