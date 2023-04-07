@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Vue Example</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  </head>
+
+  <body>
+    <div id="app"></div>
+
+    <script setup>
+      const { reactive, createApp, ref } = Vue;
+
+      const app = createApp({
+        template: `
+          <h1 :class="titleClass" :style="{ backgroundColor: color }">{{ message }}</h1>
+      <form>
+        <label for="email">Email:</label>
+        <input type="email" id="email" v-model="email" />
+        <!-- Two way binding -->
+        <button type="submit">Submit</button>
+        <p>{{ email }}</p>
+      </form>
+        `,
+        setup() {
+       
+          const email= ref('');
+          const titleClass = ref("title");
+          const message="Welcome to Concrete";
+          const color = "green";
+          return {
+            email,
+            titleClass,
+            message,
+            color,    
+  
+          };
+        },
+      });
+      app.mount("#app");
+    </script>
+  </body>
+</html>
