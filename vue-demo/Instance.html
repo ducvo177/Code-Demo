@@ -9,16 +9,15 @@
   </head>
 
   <body>
-    <div id="app"></div>
+    <div id="app">
+      <h1>{{ message }}</h1>
+      <button @click="changeMessage">Change Message</button>
+    </div>
 
     <script>
       const { createApp, ref } = Vue;
 
       const app = createApp({
-        template: `
-        <h1>{{ message }}</h1>
-      <button @click="changeMessage">Change Message</button>
-        `,
         setup() {
           const message = ref("Welcome to website");
 

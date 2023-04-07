@@ -9,7 +9,14 @@
   </head>
 
   <body>
-    <div id="app"></div>
+    <div id="app">
+      <p>Parent Component: {{ parentMessage }}</p>
+      <hr />
+      <my-component
+        :message="parentMessage"
+        @update-message="parentMessage = $event"
+      ></my-component>
+    </div>
 
     <script setup>
       const { defineComponent, provide, createApp, ref } = Vue;
@@ -27,14 +34,10 @@
         },
       });
 
-      const app = createApp({   
+      const app = createApp({
         components: {
           MyComponent,
         },
-        template: `
-        <p> Parent Component: {{ parentMessage }}</p>
-        <hr/>
-      <my-component :message="parentMessage" @update-message="parentMessage = $event"></my-component>`,
 
         setup() {
           const parentMessage = ref("Parent Component");

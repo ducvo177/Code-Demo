@@ -9,7 +9,16 @@
   </head>
 
   <body>
-    <div id="app"></div>
+    <div id="app">
+      <my-component>
+        <template #header>
+          <li>Header title</li>
+        </template>
+        <template #content>
+          <li>This is the content of the child component</li>
+        </template>
+      </my-component>
+    </div>
 
     <script>
       const { defineComponent, createApp } = Vue;
@@ -24,16 +33,6 @@
       });
 
       const app = createApp({
-        template: `
-        <my-component>
-      <template #header>
-        <li>Header title</li>
-      </template>
-      <template #content>
-        <li>This is the content of the child component</li>
-      </template>
-    </my-component>
-        `,
         setup() {
           return {};
         },

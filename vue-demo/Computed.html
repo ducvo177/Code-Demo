@@ -9,18 +9,17 @@
   </head>
 
   <body>
-    <div id="app"></div>
+    <div id="app">
+      <div>
+        <p>His fullname: {{ fullName }}</p>
+        <p>Is adult: {{ isAdult }}</p>
+      </div>
+    </div>
 
     <script setup>
       const { reactive, createApp, ref, computed } = Vue;
 
       const app = createApp({
-        template: `
-        <div>
-      <p>His fullname: {{ fullName }}</p>
-      <p>Is adult: {{ isAdult }}</p>
-    </div>
-        `,
         setup() {
           const firstName = ref("John");
           const lastName = ref("Snow");

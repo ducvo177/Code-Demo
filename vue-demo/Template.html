@@ -9,21 +9,20 @@
   </head>
 
   <body>
-    <div id="app"></div>
+    <div id="app">
+      <div>
+        <p v-if="check" :title="message">{{ message }}</p>
+        <button @click="handleHide">Hide Message</button>
+        <ul>
+          <li v-for="item in items" :key="item.id">{{ item.name }}</li>
+        </ul>
+      </div>
+    </div>
 
     <script setup>
       const { createApp, ref } = Vue;
 
       const app = createApp({
-        template: `
-        <div>
-    <p v-if="check" :title="message">{{ message }}</p>
-    <button @click="handleHide">Hide Message</button>
-    <ul>
-      <li v-for="item in items" :key="item.id">{{ item.name }}</li>
-    </ul>
-  </div>
-        `,
         setup() {
           const check = ref(true);
           const items = ref([
