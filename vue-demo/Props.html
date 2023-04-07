@@ -10,7 +10,7 @@
 
   <body>
     <div id="app">
-      <p>Parent Component: {{ parentMessage }}</p>
+      <p>Parent Component</p>
       <hr />
       <my-component :message="parentMessage"></my-component>
     </div>
@@ -31,7 +31,7 @@
         },
 
         setup() {
-          const parentMessage = ref("Parent Component");
+          const parentMessage = ref("Props from Parent Component");
 
           return {
             parentMessage,
