@@ -68,17 +68,17 @@
           {
             path: "/web",
             component: Web,
-            beforeEnter: (to, from, next) => {
+         
+          },
+        ],
+      });
+      router.beforeEach((to, from, next) => {
               if (localStorage.getItem("isAuthenticated") == "true") {
                 next();
               } else {
                 next({ name: "login" });
               }
-            }
-          },
-        ],
-      });
-
+            });
       const app = Vue.createApp({});
 
       app.use(router);
