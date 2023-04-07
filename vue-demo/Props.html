@@ -12,26 +12,17 @@
     <div id="app">
       <p>Parent Component: {{ parentMessage }}</p>
       <hr />
-      <my-component
-        :message="parentMessage"
-        @update-message="parentMessage = $event"
-      ></my-component>
+      <my-component :message="parentMessage"></my-component>
     </div>
 
     <script setup>
-      const { defineComponent, provide, createApp, ref } = Vue;
+      const { defineComponent, createApp, ref } = Vue;
 
       const MyComponent = defineComponent({
         props: ["message"],
         template: `<div>
             Child Component: {{ message }}
-            <button @click="handleClick">Update Parent</button>
           </div>`,
-        methods: {
-          handleClick() {
-            this.$emit("update-message", "Child component!");
-          },
-        },
       });
 
       const app = createApp({
@@ -41,9 +32,6 @@
 
         setup() {
           const parentMessage = ref("Parent Component");
-          provide("callFunction", () => {
-            alert("Function is running");
-          });
 
           return {
             parentMessage,
