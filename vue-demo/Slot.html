@@ -9,34 +9,37 @@
   </head>
 
   <body>
-    <div id="app">
-      <my-component>
-        <template #header>
-          <h1>Header title</h1>
-        </template>
-        <template #content>
-          <p>This is the content of the child component</p>
-          <!-- Chèn giá trị vào các slot đã được định nghĩa trước  -->
-        </template>
-      </my-component>
-    </div>
+    <div id="app"></div>
 
     <script>
-      const MyComponent = {
+      const { defineComponent, createApp } = Vue;
+      const MyComponent = defineComponent({
         template: `
-          <div>
-            <slot name="header"></slot>
+          <ul>
             <slot name="content"></slot>
-          </div>
+            <slot name="header"></slot>
+        
+          </ul>
         `,
-      };
+      });
 
-      Vue.createApp({
-        el: "#app",
-        components: {
-          "my-component": MyComponent,
+      const app = createApp({
+        template: `
+        <my-component>
+      <template #header>
+        <li>Header title</li>
+      </template>
+      <template #content>
+        <li>This is the content of the child component</li>
+      </template>
+    </my-component>
+        `,
+        setup() {
+          return {};
         },
-      }).mount("#app");
+      });
+      app.component("MyComponent", MyComponent);
+      app.mount("#app");
     </script>
   </body>
 </html>
