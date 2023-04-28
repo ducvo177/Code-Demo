@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Vue Example</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  </head>
+
+  <body>
+    <div id="app">
+      <p v-if="check" :title="message">{{ message }}</p>
+      <button @click="handleHide">Hide Message</button>
+      <form @submit="handleSubmit">
+        <label for="email">Email:</label>
+        <input @input="handleChange" type="email" id="email" v-model="email" />
+        <button type="submit">Submit</button>
+      </form>
+      <h1>{{ email }}</h1>
+    </div>
+
+    <script setup>
+      const { reactive, createApp, ref, computed } = Vue;
+
+      const app = createApp({
+        setup() {
+          const check = ref(true);
+          const message = ref("Welcome to Concrete");
+          const email = ref("");
+
+          function handleHide() {
+            check.value = !check.value;
+          }
+          function handleChange() {
+            console.log("email input is changing");
+          }
+
+          function handleSubmit() {
+            email.value = "";
+          }
+          return {
+            check,
+            message,
+            email,
+            handleHide,
+            handleChange,
+            handleSubmit,
+          };
+        },
+      });
+      app.mount("#app");
+    </script>
+  </body>
+</html>

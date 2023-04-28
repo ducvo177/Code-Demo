@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Vue Example</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  </head>
+
+  <body>
+    <div id="app">
+      <div>
+        <p v-if="check" :title="message">{{ message }}</p>
+        <button @click="handleHide">Hide Message</button>
+        <ul>
+          <li v-for="item in items" :key="item.id">{{ item.name }}</li>
+        </ul>
+      </div>
+    </div>
+
+    <script setup>
+      const { createApp, ref } = Vue;
+
+      const app = createApp({
+        setup() {
+          const check = ref(true);
+          const items = ref([
+            { id: 1, name: "Item 1" },
+            { id: 2, name: "Item 2" },
+            { id: 3, name: "Item 3" },
+          ]);
+          const message = "Welcome to Concrete";
+          function handleHide() {
+            check.value = !check.value;
+          }
+          return { check, items, message, handleHide };
+        },
+      });
+      app.mount("#app");
+    </script>
+  </body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Vue Example</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  </head>
+
+  <body>
+    <div id="app"></div>
+
+    <script setup>
+      const { createApp, ref, directive } = Vue;
+
+      const app = createApp({
+        template: `<h1 v-uppercase>{{ message }}</h1>`,
+        setup() {
+          const message = "Hello World!";
+
+          return {
+            message,
+          };
+        },
+      });
+
+      app.directive("uppercase", function (el, binding) {
+        el.style.textTransform = "uppercase";
+      });
+
+      app.mount("#app");
+    </script>
+  </body>
+</html>

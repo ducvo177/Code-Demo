@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Vue Example</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  </head>
+
+  <body>
+    <div id="app">
+      <p>Parent Component</p>
+      <hr />
+      <my-component :parent-message="parentMessage"></my-component>
+    </div>
+
+    <script setup>
+      const { defineComponent, createApp, ref } = Vue;
+      const MyComponent = defineComponent({
+        props: {
+          parentMessage: {
+            type: String,
+            required: true,
+          },
+        },
+        template: `<div>
+            Child Component: {{ parentMessage }}
+          </div>`,
+      });
+
+      const app = createApp({
+        components: {
+          MyComponent,
+        },
+
+        setup() {
+          const parentMessage = ref("Props from Parent Component");
+
+          return {
+            parentMessage,
+          };
+        },
+      });
+      app.mount("#app");
+    </script>
+  </body>
+</html>

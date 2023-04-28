@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Vue Example</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  </head>
+
+  <body>
+    <div id="app">
+      <div>
+        <p>{{ message }}</p>
+        <input v-model="inputMessage" />
+      </div>
+    </div>
+
+    <script setup>
+      const { watch, createApp, ref } = Vue;
+
+      const app = createApp({
+        setup() {
+          const message = "Hello World!";
+          const inputMessage = ref("");
+          watch(inputMessage, (newVal) => {
+            inputMessage.value = newVal.toUpperCase();
+          });
+          return {
+            message,
+            inputMessage,
+          };
+        },
+      });
+      app.mount("#app");
+    </script>
+  </body>
+</html>
